@@ -1,12 +1,17 @@
 import React, {useEffect, useState} from 'react'
-import {View, Text, ActivityIndicator, FlatList, StyleSheet} from 'react-native'
+import {View, Text, ActivityIndicator, FlatList, StyleSheet, TouchableOpacity} from 'react-native'
+import {useNavigation} from '@react-navigation/native'
+
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import {Report} from '../types'
+import ReportComponent from './Report'
+import {SCREENS_ROUTES} from '../navigation/constants'
 
 const ReportList = (): JSX.Element => {
   const [reportList, setReportList] = useState<Array<Report>>([])
   const [isLoading, setIsLoading] = useState(true)
+  const navigation = useNavigation()
 
   useEffect(() => {
     const getReportList = async () => {
@@ -25,13 +30,9 @@ const ReportList = (): JSX.Element => {
     getReportList()
   }, [])
 
-  const renderItem = ({item}: {item: Report}) => (
-    <View>
-      <Text>Imagen: {item.image}</Text>
-      <Text>Título: {item.title}</Text>
-      <Text>Descripción: {item.description}</Text>
-    </View>
-  )
+  const handleCreateReport = () => {
+    navigation.navigate(SCREENS_ROUTES.CREATE)
+  }
 
   if (isLoading) {
     return <ActivityIndicator size="large" color="blue" />
@@ -41,28 +42,52 @@ const ReportList = (): JSX.Element => {
     <View style={styles.container}>
       <FlatList
         data={reportList}
-        renderItem={renderItem}
+        renderItem={({item}: Report) => <ReportComponent item={item} />}
         keyExtractor={item => item.id.toString()}
-        ListHeaderComponent={<Text>Lista de reportes:</Text>}
+        ListHeaderComponent={<Text style={styles.title}>Lista de reportes</Text>}
         ListEmptyComponent={<Text style={styles.emptyList}>No has agregado reportes</Text>}
         contentContainerStyle={styles.list}
       />
+      <View style={styles.wrapper}>
+        <TouchableOpacity style={styles.createButton} onPress={handleCreateReport}>
+          <Text style={styles.createButtonText}>Crear Reporte</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginLeft: 8,
+    textAlign: 'center',
   },
   emptyList: {
-    marginTop: 40,
+    fontSize: 20,
+    color: '#999999',
   },
   list: {
-    flex: 1,
+    margin: 10,
+  },
+  wrapper: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  createButton: {
+    backgroundColor: '#2980b9',
+    borderRadius: 5,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
+  createButtonText: {
+    fontSize: 18,
+    color: '#FFFFFF',
+    fontWeight: 'bold',
   },
 })
 

@@ -1,12 +1,13 @@
 import React from 'react'
-import {View, StyleSheet} from 'react-native'
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native'
 import ReportList from '../components/ReportList'
 
 const Home = (): JSX.Element => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="transparent" />
       <ReportList />
-    </View>
+    </SafeAreaView>
   )
 }
 
