@@ -69,9 +69,9 @@ const CreateReport = (): JSX.Element => {
     <>
       <View style={styles.container}>
         <Text style={styles.title}>Nuevo reporte</Text>
-        <TextInput style={styles.input} placeholder="Imagen" value={image} onChangeText={setImage} />
         <TextInput style={styles.input} placeholder="Título" value={title} onChangeText={setTitle} />
         <TextInput style={styles.input} placeholder="Descripción" value={description} onChangeText={setDescription} />
+        <TextInput style={styles.input} placeholder="Imagen" value={image} onChangeText={setImage} />
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={[styles.button, styles.resetButton]} onPress={handleReset}>

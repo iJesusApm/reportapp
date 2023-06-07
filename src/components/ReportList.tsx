@@ -34,6 +34,11 @@ const ReportList = (): JSX.Element => {
     navigation.navigate(SCREENS_ROUTES.CREATE)
   }
 
+  const handleRemoveReport = (reportId: number) => {
+    const updatedList = reportList.filter(report => report.id !== reportId)
+    setReportList(updatedList)
+  }
+
   if (isLoading) {
     return <ActivityIndicator size="large" color="blue" />
   }
@@ -42,7 +47,7 @@ const ReportList = (): JSX.Element => {
     <View style={styles.container}>
       <FlatList
         data={reportList}
-        renderItem={({item}: Report) => <ReportComponent item={item} />}
+        renderItem={({item}: Report) => <ReportComponent item={item} onRemoveReport={handleRemoveReport} />}
         keyExtractor={item => item.id.toString()}
         ListHeaderComponent={<Text style={styles.title}>Lista de reportes</Text>}
         ListEmptyComponent={<Text style={styles.emptyList}>No has agregado reportes</Text>}
@@ -70,6 +75,8 @@ const styles = StyleSheet.create({
   emptyList: {
     fontSize: 20,
     color: '#999999',
+    textAlign: 'center',
+    marginTop: 40,
   },
   list: {
     margin: 10,
