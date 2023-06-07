@@ -1,10 +1,11 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, StyleSheet} from 'react-native'
+import ReportList from '../components/ReportList'
 
 const Home = () => {
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
+      <ReportList />
     </View>
   )
 }
@@ -13,8 +14,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 })
 
