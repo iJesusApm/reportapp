@@ -1,10 +1,11 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, StyleSheet} from 'react-native'
+import CreateReport from '../components/CreateReport'
 
-const Create = () => {
+const Create = (): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Text>Create</Text>
+      <CreateReport />
     </View>
   )
 }

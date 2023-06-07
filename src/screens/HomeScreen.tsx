@@ -2,7 +2,7 @@ import React from 'react'
 import {View, StyleSheet} from 'react-native'
 import ReportList from '../components/ReportList'
 
-const Home = () => {
+const Home = (): JSX.Element => {
   return (
     <View style={styles.container}>
       <ReportList />
