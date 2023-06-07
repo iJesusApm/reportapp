@@ -20,7 +20,7 @@ const Navigator = () => {
           animation: 'slide_from_right',
         }}>
         <Stack.Screen name={SCREENS_ROUTES.HOME} component={HomeScreen} options={{headerShown: false}} />
-        <Stack.Screen name={SCREENS_ROUTES.CREATE} component={CreateScreen} options={{headerShown: false}} />
+        <Stack.Screen name={SCREENS_ROUTES.CREATE} component={CreateScreen} options={{title: ''}} />
       </Stack.Navigator>
     </NavigationContainer>
   )

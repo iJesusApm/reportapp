@@ -77,15 +77,16 @@ const styles = StyleSheet.create({
   wrapper: {
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 8,
   },
   createButton: {
     backgroundColor: '#2980b9',
-    borderRadius: 5,
+    borderRadius: 8,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
   createButtonText: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#FFFFFF',
     fontWeight: 'bold',
   },
