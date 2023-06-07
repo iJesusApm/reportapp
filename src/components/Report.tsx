@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import {Ionicons} from '@expo/vector-icons'
 
 import {Report} from '../types'
+import {STORAGE_KEY} from '../constants'
 
 type Props = {
   item: Report
@@ -15,10 +16,10 @@ const ReportComponent = ({item, onRemoveReport}: Props): JSX.Element => {
 
   const handleRemoveReport = async () => {
     try {
-      const storedReportList = await AsyncStorage.getItem('reportList')
+      const storedReportList = await AsyncStorage.getItem(STORAGE_KEY)
       if (storedReportList !== null) {
         const updatedReportList = JSON.parse(storedReportList).filter((report: Report) => report.id !== item.id)
-        await AsyncStorage.setItem('reportList', JSON.stringify(updatedReportList))
+        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(updatedReportList))
       }
 
       onRemoveReport(item.id)

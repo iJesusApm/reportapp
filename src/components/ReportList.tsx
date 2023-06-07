@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import {Report} from '../types'
 import ReportComponent from './Report'
 import {SCREENS_ROUTES} from '../navigation/constants'
+import {STORAGE_KEY} from '../constants'
 
 const ReportList = (): JSX.Element => {
   const [reportList, setReportList] = useState<Array<Report>>([])
@@ -16,7 +17,7 @@ const ReportList = (): JSX.Element => {
   useEffect(() => {
     const getReportList = async () => {
       try {
-        const storedReportList = await AsyncStorage.getItem('reportList')
+        const storedReportList = await AsyncStorage.getItem(STORAGE_KEY)
         if (storedReportList !== null) {
           setReportList(JSON.parse(storedReportList))
         }

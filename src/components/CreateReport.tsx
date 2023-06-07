@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 import {View, Text, TextInput, TouchableOpacity, Alert, Image, StyleSheet} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
 import * as ImagePicker from 'expo-image-picker'
 
 import {SCREENS_ROUTES} from '../navigation/constants'
+import {STORAGE_KEY} from '../constants'
 
 const CreateReport = (): JSX.Element => {
   const [image, setImage] = useState('')
@@ -46,13 +46,13 @@ const CreateReport = (): JSX.Element => {
     }
 
     try {
-      const storedReportList = await AsyncStorage.getItem('reportList')
+      const storedReportList = await AsyncStorage.getItem(STORAGE_KEY)
       let updatedReportList: Array<object> = []
       if (storedReportList !== null) {
         updatedReportList = JSON.parse(storedReportList)
       }
       updatedReportList.push(report)
-      await AsyncStorage.setItem('reportList', JSON.stringify(updatedReportList))
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(updatedReportList))
 
       Alert.alert('Éxito', 'Reporte guardado exitosamente', [
         {
