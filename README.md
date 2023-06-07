@@ -7,23 +7,17 @@
   - [React Native](https://reactnative.dev)
   - [React Navigation](https://reactnavigation.org/)
 
-## Android Screens
+## Screens Previews
 
-<!-- <table style="border: 0">
+<table style="border: 0">
   <tr>
-    <td align="center"><img src="files/Android-WELCOME.png" /></td>
-    <td align="center"><img src="files/Android-LOGIN.png" /></td>
+    <td align="center"><img src="files/list.jpeg" /></td>
+    <td align="center"><img src="files/empty list.jpeg" /></td>
+    <td align="center"><img src="files/new report.jpeg" /></td>
+    <td align="center"><img src="files/error.jpeg" /></td>
+    <td align="center"><img src="files/success.jpeg" /></td>
   </tr>
-</table> -->
-
-## iOS Screens
-
-<!-- <table style="border: 0">
-  <tr>
-    <td align="center"><img src="files/iOS-WELCOME.png" /></td>
-    <td align="center"><img src="files/iOS-LOGIN.png" /></td>
-  </tr>
-</table> -->
+</table>
 
 ## Getting Started
 
