@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
-import {View, Text, TextInput, TouchableOpacity, Alert, StyleSheet} from 'react-native'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import {SCREENS_ROUTES} from '../navigation/constants'
+import {View, Text, TextInput, TouchableOpacity, Alert, Image, StyleSheet} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+import * as ImagePicker from 'expo-image-picker'
+
+import {SCREENS_ROUTES} from '../navigation/constants'
 
 const CreateReport = (): JSX.Element => {
   const [image, setImage] = useState('')
@@ -16,6 +19,18 @@ const CreateReport = (): JSX.Element => {
       return false
     }
     return true
+  }
+
+  const handleCaptureImage = async () => {
+    const {status} = await ImagePicker.requestCameraPermissionsAsync()
+    if (status !== 'granted') {
+      alert('Se requieren permisos de cámara para tomar fotos.')
+      return
+    }
+    const result = await ImagePicker.launchCameraAsync({aspect: [1, 1]})
+    if (!result.canceled) {
+      setImage(result.assets[0].uri)
+    }
   }
 
   const handleCreateReport = async () => {
@@ -71,7 +86,10 @@ const CreateReport = (): JSX.Element => {
         <Text style={styles.title}>Nuevo reporte</Text>
         <TextInput style={styles.input} placeholder="Título" value={title} onChangeText={setTitle} />
         <TextInput style={styles.input} placeholder="Descripción" value={description} onChangeText={setDescription} />
-        <TextInput style={styles.input} placeholder="Imagen" value={image} onChangeText={setImage} />
+        {Boolean(image) && <Image source={{uri: image}} resizeMode="contain" style={styles.image} />}
+        <TouchableOpacity style={styles.cameraButton} onPress={handleCaptureImage}>
+          <Text style={styles.buttonText}>Adjuntar Imagen</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={[styles.button, styles.resetButton]} onPress={handleReset}>
@@ -106,6 +124,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 20,
   },
   button: {
     flex: 1,
@@ -125,6 +144,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#FFFFFF',
     fontWeight: 'bold',
+  },
+  cameraButton: {
+    backgroundColor: '#2980b9',
+    borderRadius: 8,
+    padding: 10,
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  image: {
+    width: 250,
+    height: 250,
+    marginTop: 10,
+    alignSelf: 'center',
   },
 })
 

@@ -1,6 +1,7 @@
 import React from 'react'
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import {Ionicons} from '@expo/vector-icons'
 
 import {Report} from '../types'
 
@@ -28,13 +29,19 @@ const ReportComponent = ({item, onRemoveReport}: Props): JSX.Element => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.reportItem}>
-        <Text style={styles.reportDescription}>Imagen: {image}</Text>
-        <Text style={styles.reportTitle}>{title}</Text>
-        <Text style={styles.reportDescription}>{description}</Text>
-        <TouchableOpacity style={styles.removeButton} onPress={handleRemoveReport}>
-          <Text style={styles.removeButtonText}>Eliminar</Text>
-        </TouchableOpacity>
+      <View style={styles.row}>
+        <View style={styles.item}>
+          {Boolean(image) && <Image source={{uri: image}} resizeMode="contain" style={styles.image} />}
+          <View style={styles.textGroup}>
+            <Text style={styles.reportTitle}>{title}</Text>
+            <Text style={styles.reportDescription}>{description}</Text>
+          </View>
+        </View>
+        <View style={styles.item}>
+          <TouchableOpacity style={styles.removeButton} onPress={handleRemoveReport}>
+            <Ionicons name="trash-outline" size={25} color="#FF0000" />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   )
@@ -45,17 +52,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderColor: '#E0E0E0',
     borderTopWidth: 1,
-    marginTop: 8,
-  },
-  reportItem: {
-    alignItems: 'flex-start',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+    margin: 8,
   },
   reportTitle: {
     marginVertical: 4,
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  image: {
+    width: 75,
+    height: 75,
+    borderRadius: 10,
   },
   reportDescription: {
     marginVertical: 4,
@@ -63,16 +70,22 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   removeButton: {
-    backgroundColor: '#FF0000',
-    borderRadius: 8,
-    paddingVertical: 5,
     paddingHorizontal: 10,
-    marginTop: 5,
-    alignSelf: 'flex-end',
   },
-  removeButtonText: {
-    color: '#FFFFFF',
-    fontWeight: 'bold',
+
+  row: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 100,
+    margin: 10,
+  },
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textGroup: {
+    marginLeft: 16,
   },
 })
 

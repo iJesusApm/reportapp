@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   list: {
-    margin: 10,
+    backgroundColor: '#FFFFFF',
   },
   wrapper: {
     alignItems: 'center',
