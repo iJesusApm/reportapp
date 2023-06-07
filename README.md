@@ -36,9 +36,9 @@ To get a local copy of this project up and running, follow the steps below.
 ### Steps
 
 - Clone the repository:
-  git clone https://github.com/iJesusApm/socialnetapp.git
+  git clone https://github.com/iJesusApm/reportapp
 - Navigate into the project directory:
-  cd socialnetapp
+  cd reportapp
 - Install the dependencies:
   `yarn install` or `npm install`
 - if u dont haved, please install expo:
@@ -51,10 +51,8 @@ To get a local copy of this project up and running, follow the steps below.
 ### Project Structure
 
 From src:
-
 - assets/: all the resources has been used in the app, like images, icon or fonts.
 - components/: reusable components used across different screens.
-- containers/: screen components that render the UI and handle user interaction.
 - navigation/: the app's navigation components and configuration.
-- styles/: color, typography and other styles.
+- screens/: screen components that render the UI and handle user interaction.
 - App.tsx: the main entry point of the app.
